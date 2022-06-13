@@ -1,0 +1,15 @@
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\bin\Debug\net6.0\Master_Thesis.exe
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\bin\Debug\net6.0\Master_Thesis.deps.json
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\bin\Debug\net6.0\Master_Thesis.runtimeconfig.json
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\bin\Debug\net6.0\Master_Thesis.dll
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\bin\Debug\net6.0\Master_Thesis.pdb
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.csproj.AssemblyReference.cache
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.AssemblyInfoInputs.cache
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.AssemblyInfo.cs
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.csproj.CoreCompileInputs.cache
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.dll
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\refint\Master_Thesis.dll
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.pdb
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.genruntimeconfig.cache
+C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\ref\Master_Thesis.dll
