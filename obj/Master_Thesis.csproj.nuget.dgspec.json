@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Filip\\OneDrive\\ACCESS\\Semester 4\\Main Code\\Master_Thesis\\Master_Thesis.csproj": {}
+    "C:\\Master_Thesis\\Master_Thesis.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Filip\\OneDrive\\ACCESS\\Semester 4\\Main Code\\Master_Thesis\\Master_Thesis.csproj": {
+    "C:\\Master_Thesis\\Master_Thesis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Filip\\OneDrive\\ACCESS\\Semester 4\\Main Code\\Master_Thesis\\Master_Thesis.csproj",
+        "projectUniqueName": "C:\\Master_Thesis\\Master_Thesis.csproj",
         "projectName": "Master_Thesis",
-        "projectPath": "C:\\Users\\Filip\\OneDrive\\ACCESS\\Semester 4\\Main Code\\Master_Thesis\\Master_Thesis.csproj",
+        "projectPath": "C:\\Master_Thesis\\Master_Thesis.csproj",
         "packagesPath": "C:\\Users\\Filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Filip\\OneDrive\\ACCESS\\Semester 4\\Main Code\\Master_Thesis\\obj\\",
+        "outputPath": "C:\\Master_Thesis\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Filip\\AppData\\Roaming\\NuGet\\NuGet.Config",

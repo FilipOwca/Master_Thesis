@@ -81,7 +81,7 @@ namespace Master_Thesis
             // {
             //     Console.WriteLine("Coordinate Stiffness Product of wall {0}: {1}", i, walls[i].CorStiffProduct());
             // }
-
+            string elo = "elo elo";
 
             var shearOrdinates = building.ShearCentre(walls);
 

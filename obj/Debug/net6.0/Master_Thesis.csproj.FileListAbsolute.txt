@@ -13,3 +13,18 @@ C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6
 C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.pdb
 C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\Master_Thesis.genruntimeconfig.cache
 C:\Users\Filip\OneDrive\ACCESS\Semester 4\Main Code\Master_Thesis\obj\Debug\net6.0\ref\Master_Thesis.dll
+C:\Master_Thesis\obj\Debug\net6.0\Master_Thesis.csproj.AssemblyReference.cache
+C:\Master_Thesis\obj\Debug\net6.0\Master_Thesis.GeneratedMSBuildEditorConfig.editorconfig
+C:\Master_Thesis\obj\Debug\net6.0\Master_Thesis.AssemblyInfoInputs.cache
+C:\Master_Thesis\obj\Debug\net6.0\Master_Thesis.AssemblyInfo.cs
+C:\Master_Thesis\obj\Debug\net6.0\Master_Thesis.csproj.CoreCompileInputs.cache
+C:\Master_Thesis\obj\Debug\net6.0\Master_Thesis.dll
+C:\Master_Thesis\obj\Debug\net6.0\refint\Master_Thesis.dll
+C:\Master_Thesis\obj\Debug\net6.0\Master_Thesis.pdb
+C:\Master_Thesis\bin\Debug\net6.0\Master_Thesis.exe
+C:\Master_Thesis\bin\Debug\net6.0\Master_Thesis.deps.json
+C:\Master_Thesis\bin\Debug\net6.0\Master_Thesis.runtimeconfig.json
+C:\Master_Thesis\bin\Debug\net6.0\Master_Thesis.dll
+C:\Master_Thesis\bin\Debug\net6.0\Master_Thesis.pdb
+C:\Master_Thesis\obj\Debug\net6.0\Master_Thesis.genruntimeconfig.cache
+C:\Master_Thesis\obj\Debug\net6.0\ref\Master_Thesis.dll
