@@ -12,7 +12,7 @@ class Building
     private double _shearCentreCoordinateZ;
 
     // Creating an instance of a Building Class
-    public Building(double length, double width)
+    public Building()
     {
 
     }

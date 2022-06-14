@@ -31,7 +31,7 @@ namespace Master_Thesis
             var d = Math.Sqrt(width * width + length * length);
 
             // New instance of class Building
-            var building = new Building(length, width);
+            var building = new Building();
 
             // New instance of class Grid (The purpose of this class is to determine the list of points, representing intersections of the main building's axes.
             var grid = new Grid(5, 4);
@@ -56,11 +56,6 @@ namespace Master_Thesis
             var c = Math.Sqrt((length / 2 - shearCoordinates[0]) * (length / 2 - shearCoordinates[0]) +
                               (width / 2 - shearCoordinates[1]) * (width / 2 - shearCoordinates[1]));
 
-            // Calculation of total characteristic vertical load acting ont the building (dead load of concrete and finishing layers + live load on the floors)
-            var Load = new Load(width, length, tFloor, gLoad, qLoad, walls, hFloor, tWall, columnCs,
-                columnNr, floorNr);
-            var verticalLoad = Load.GetVerticalLoad();
-            
             // Physical parameters related to the bracing system (layout of walls)
             var sumTorsionalMoment = building.SumTorsionalMoment(walls);
             var warpingAreaMoment = building.WarpingAreaMoment(walls);
@@ -76,6 +71,11 @@ namespace Master_Thesis
             // Global buckling load for pure shear about Y (horizontal) and Z (vertical) axes.
             var FvBSy = shearModulusDesign * building.SumShearAreaY(walls);
             var FvBSz = shearModulusDesign * building.SumShearAreaZ(walls);
+
+            // Calculation of total characteristic vertical load acting ont the building (dead load of concrete and finishing layers + live load on the floors)
+            var Load = new Load(width, length, tFloor, gLoad, qLoad, walls, hFloor, tWall, columnCs,
+                columnNr, floorNr);
+            var verticalLoad = Load.GetVerticalLoad();
 
             // Global buckling load taking into account bending and shear
             var FVBy = FvBBy / (1 + FvBBy / FvBSy);
