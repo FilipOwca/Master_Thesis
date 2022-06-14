@@ -3,6 +3,7 @@ namespace Master_Thesis;
 
 class Building
 {
+    // Physical parameters of the bracing system (walls' layout)
     private double _sumeEqlStiffinY;
     private double _sumeEqlStiffinZ;
     private double _sumeCorStiffProdinY;
@@ -10,16 +11,18 @@ class Building
     private double _shearCentreCoordinateY;
     private double _shearCentreCoordinateZ;
 
-    public Building(int length, int width)
+    // Creating an instance of a Building Class
+    public Building(double length, double width)
     {
 
     }
 
+    // Finding the Shear Center of the bracing system related to the given walls
     public double[] ShearCentre(List<Wall> walls)
     {
+        // Splitting list of walls into 2 groups: 1) in Y direction (horizontal) and 2) in Z direction (vertical). In each list even members contain EquivalentStiffness of following walls and odd members contain CorStiffProduct of following walls.
         var wallsY = new List<double>();
         var wallsZ = new List<double>();
-    
         foreach (Wall wall in walls)
         {
             if (wall.Orientation() == 'y')
@@ -33,7 +36,7 @@ class Building
                 wallsZ.Add(wall.CorStiffProduct());
             }
         }
-
+        // Summing up EquivalentStiffness and CorStiffProduct of each wall in 2 directions separately
         for (int i = 0; i < wallsY.Count; i++)
         {
             if (i % 2 == 0)
@@ -41,7 +44,6 @@ class Building
             else 
                 _sumeCorStiffProdinY += wallsY[i];
         }
-
         for (int i = 0; i < wallsZ.Count; i++)
         {
             if (i % 2 == 0)
@@ -49,33 +51,24 @@ class Building
             else
                 _sumeCorStiffProdinZ += wallsZ[i];
         }
-        //
-        // Console.WriteLine("The sume of Eql Stiff in Y direction: " + _sumeEqlStiffinY);
-        // Console.WriteLine("The sume of Coordinate and Stiffness Product in Y direction: " + _sumeCorStiffProdinY);
-        // Console.WriteLine("The sume of Eql Stiff in Z direction: " + _sumeEqlStiffinZ);
-        // Console.WriteLine("The sume of Coordinate and Stiffness Product in Z direction: " + _sumeCorStiffProdinZ);
-
+        
+        // Finding coordinates of the bracing system's shear center
         double[] shearCentreCoordinates = new double[2];
         shearCentreCoordinates[0] = _sumeCorStiffProdinZ / _sumeEqlStiffinZ;
         shearCentreCoordinates[1] = _sumeCorStiffProdinY / _sumeEqlStiffinY;
         _shearCentreCoordinateY = shearCentreCoordinates[0];
         _shearCentreCoordinateZ = shearCentreCoordinates[1];
-
         return shearCentreCoordinates;
     }
 
-
+    // Finding the warping area moment of the bracing system
     public double WarpingAreaMoment(List<Wall> walls)
     {
         double warpingAreaMoment = 0;
-    
         foreach (var wall in walls)
         {
-            double distanceY;
-            double distanceZ;
-    
-            distanceY = wall.CentreCoordinates()[0] - _shearCentreCoordinateY;
-            distanceZ = wall.CentreCoordinates()[1] - _shearCentreCoordinateZ;
+            var distanceY = wall.CentreCoordinates()[0] - _shearCentreCoordinateY;
+            var distanceZ = wall.CentreCoordinates()[1] - _shearCentreCoordinateZ;
     
             if (wall.Orientation() == 'y')
             {
@@ -85,30 +78,11 @@ class Building
             {
                 warpingAreaMoment += distanceY * distanceY * wall.EquivalentStiffness();
             }
-    
         }
-    
         return warpingAreaMoment;
     }
-    // public double GetSumeEqlStiffinY()
-    // {
-    //     return _sumeEqlStiffinY;
-    // }
-    //
-    // public double GetSumeEqlStiffinZ()
-    // {
-    //     return _sumeEqlStiffinZ;
-    // }
-    // public double GetSumeCorStiffProdinY()
-    // {
-    //     return _sumeCorStiffProdinY;
-    // }
-    //
-    // public double GetSumeCorStiffProdinZ()
-    // {
-    //     return _sumeCorStiffProdinZ;
-    // }
-    //
+  
+    // Summing up torsional moment of all walls
     public double SumTorsionalMoment(List<Wall> walls)
     {
         double sumTorsionalMoment = 0;
@@ -120,6 +94,7 @@ class Building
         return sumTorsionalMoment;
     }
 
+    // Summing up moment of inertia of each wall in Y direction (horizontal)
     public double SumInertialMomentY(List<Wall> walls)
     {
         double sumInertiaMomentY = 0;
@@ -134,10 +109,10 @@ class Building
         return sumInertiaMomentY;
     }
 
+    // Summing up moment of inertia of each wall in Z direction (vertical)
     public double SumInertialMomentZ(List<Wall> walls)
     {
         double sumInertiaMomentZ = 0;
-
         foreach (var wall in walls)
         {
             if (wall.Orientation() == 'y')
@@ -148,10 +123,10 @@ class Building
         return sumInertiaMomentZ;
     }
 
+    // Summing up shear are  of each wall in Y direction (horizontal)
     public double SumShearAreaY(List<Wall> walls)
     {
         double sumShearAreaY = 0;
-
         foreach (var wall in walls)
         {
             if (wall.Orientation() == 'z')
@@ -162,10 +137,10 @@ class Building
         return sumShearAreaY;
     }
 
+    // Summing up shear are  of each wall in Z direction (vertical)
     public double SumShearAreaZ(List<Wall> walls)
     {
         double sumShearAreaZ = 0;
-
         foreach (var wall in walls)
         {
             if (wall.Orientation() == 'y')
