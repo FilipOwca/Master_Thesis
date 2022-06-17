@@ -82,13 +82,13 @@ namespace Master_Thesis
             var FVBz = FvBBz / (1 + FvBBz / FvBSz);
 
             // Left and right hand side of rotational stability formula
-            var RotationL = 1 / (1 / (heightOfBuilding * heightOfBuilding) * (youngModulusDesign * warpingAreaMoment / 1e6) / (verticalLoad * (d * d * c * c / 12)) + 1 / 2.28 * Math.Sqrt(shearModulusDesign * sumTorsionalMoment / (verticalLoad * (d * d * c * c / 12))));
-            var RotationR = 0.31 * floorNr / (floorNr + 1.6);
+            var RotationL = 1 / (heightOfBuilding) * Math.Sqrt((youngModulusDesign * warpingAreaMoment / 1e6) / (verticalLoad * ((d * d / 12) + c * c)))  + 1 / 2.28 * Math.Sqrt(shearModulusDesign * sumTorsionalMoment / (verticalLoad * ((d * d / 12) + c * c)));
+            var RotationR = 1 / Math.Sqrt(0.31 * floorNr / (floorNr + 1.6));
 
             // Validation of the translation and rotation proof:
             Console.WriteLine("Translation in Z Direction: {0} <= {1} ", verticalLoad / 1e6, 0.1*FVBy/1e6);
             Console.WriteLine("Translation in Y Direction: {0} <= {1} ", verticalLoad / 1e6, 0.1 * FVBz/1e6);
-            Console.WriteLine("Rotation: {0} <= {1}", RotationL, RotationR);
+            Console.WriteLine("Rotation: {0} >= {1}", RotationL, RotationR);
         }
     }
 }
