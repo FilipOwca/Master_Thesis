@@ -3,21 +3,21 @@
 class Point
 {
     // Coordinates of each point of axes intersection
-    private readonly double _xcoordinate;
-    private readonly double _ycoordinate;
+    private readonly int _ycoordinate;
+    private readonly int _zcoordinate;
 
-    public Point(double x, double y)
+    public Point(int y, int z)
     {
-        _xcoordinate = x;
         _ycoordinate = y;
+        _zcoordinate = z;
     }
 
     // Used to obtain coordinates of a point
-    public double[] DisplayCoordinates()
+    public int[] DisplayCoordinates()
     {
-        double[] coordinates = new double[2];
-        coordinates[0] = _xcoordinate;
-        coordinates[1] = _ycoordinate;
+        int[] coordinates = new int[2];
+        coordinates[0] = _ycoordinate;
+        coordinates[1] = _zcoordinate;
         return coordinates;
     }
 }

@@ -4,111 +4,110 @@ namespace Master_Thesis;
 class Wall
 {
     // Geometrical and physical parameters of each instance of the class Wall.
-    private readonly double _centreYCor;
-    private readonly double _centreZCor;
-    private readonly double _length;
-    private readonly char _orientation;
-    private readonly double _shearArea;
-    private readonly double _momentOfInertia;
-    private readonly double _torsionalMoment;
-    private const double _shearCorrectionFactor = 0.8333333333;
-    private readonly double _equivalentStiffness;
-    private readonly double _corStiffProduct;
+    private double _centreYCor;
+    private double _centreZCor;
+
+    const double tWall = 0.3;
+    const double heightOfBuilding = 12;
+    const double youngModulus = 33000000000;
+    private const double ShearCorrectionFactor = 0.8333333333;
 
     // Constructing an instance of the class Wall and calculating its geometrical and physical parameters
-    public Wall(Point A, Point B, double t, char o, double E, double heigth)
+    public Wall(Point a, Point b)
+    {
+        CalculateParameters(a, b);
+    }
+
+    private void CalculateParameters(Point a, Point b)
     {
         // Assigning parameters of a wall
-        var thickness = t;
-        _orientation = o;
-        var heigthWall = heigth;
-        var gModulus = E / (2 * (1 + 0.2));
-
-        // Calling coordinates of the wall's beginning and end from the Point class
-        var startYCor = A.DisplayCoordinates()[0];
-        var startZCor = A.DisplayCoordinates()[1];
-        var endYCor = B.DisplayCoordinates()[0];
-        var endZCor = B.DisplayCoordinates()[1];
+        var gModulus = youngModulus / (2 * (1 + 0.2));
         
+        // Calling coordinates of the wall's beginning and end from the Point class
+        var startYCor = a.DisplayCoordinates()[0];
+        var startZCor = a.DisplayCoordinates()[1];
+        var endYCor = b.DisplayCoordinates()[0];
+        var endZCor = b.DisplayCoordinates()[1];
+
+        // Finding the orientation of the wall's main axis
+        if (startYCor - endYCor == 0)
+            Orientation = 'z';
+        else
+            Orientation = 'y';
+
         // Coordinates of the wall's centre
         _centreYCor = startYCor + (endYCor - startYCor) / 2;
         _centreZCor = startZCor + (endZCor - startZCor) / 2;
 
         // Length of the wall
-        if (_orientation == 'y')
-            _length += (endYCor - startYCor);
+        if (Orientation == 'y')
+            Length = (endYCor - startYCor);
 
-        else if (_orientation == 'z')
-            _length += (endZCor - startZCor);
+        else if (Orientation == 'z')
+            Length = (endZCor - startZCor);
         else
             throw new Exception("Invalid direction of the wall");
 
         // Second Moment of Inertia
         double momentOfInertia;
-        if (_orientation == 'y')
+        if (Orientation == 'y')
         {
-            momentOfInertia = thickness * ((endYCor - startYCor) * (endYCor - startYCor) * (endYCor - startYCor)) / 12;
+            momentOfInertia = tWall * ((endYCor - startYCor) * (endYCor - startYCor) * (endYCor - startYCor)) / 12;
         }
-        else if (_orientation == 'z')
+        else if (Orientation == 'z')
         {
-            momentOfInertia = thickness * ((endZCor - startZCor) * (endZCor - startZCor) * (endZCor - startZCor)) / 12;
+            momentOfInertia = tWall * ((endZCor - startZCor) * (endZCor - startZCor) * (endZCor - startZCor)) / 12;
         }
         else
         {
             throw new Exception("Invalid direction of the wall");
         }
-        _momentOfInertia = momentOfInertia;
+
+        InertiaMoment = momentOfInertia;
 
         // Bending Stiffness
-        var bendingStiffness = (3 * E * momentOfInertia) / (heigthWall * heigthWall * heigthWall);
+        var bendingStiffness = (3 * youngModulus * momentOfInertia) / (heightOfBuilding * heightOfBuilding * heightOfBuilding);
 
         // Shear Area
         double shearArea;
-        if (_orientation == 'y')
-            shearArea = (endYCor - startYCor) * thickness * _shearCorrectionFactor;
+        if (Orientation == 'y')
+            shearArea = (endYCor - startYCor) * tWall * ShearCorrectionFactor;
 
-        else if (_orientation == 'z')
-            shearArea = (endZCor - startZCor) * thickness * _shearCorrectionFactor;
+        else if (Orientation == 'z')
+            shearArea = (endZCor - startZCor) * tWall * ShearCorrectionFactor;
 
         else
             throw new Exception("Invalid direction of the wall");
-        _shearArea = shearArea;
+        ShearArea = shearArea;
 
         // Shear Stiffness
-        var shearStiffness = (gModulus * shearArea) / heigthWall;
+        var shearStiffness = (gModulus * shearArea) / heightOfBuilding;
 
         // Equivalent Stiffness
-        _equivalentStiffness = (bendingStiffness * shearStiffness) / (bendingStiffness + shearStiffness);
+        EquivalentStiffness = (bendingStiffness * shearStiffness) / (bendingStiffness + shearStiffness);
 
         // Product of centre coordinates and equivalent stiffness
-        if (_orientation == 'y')
-            _corStiffProduct = _equivalentStiffness * _centreZCor;
+        if (Orientation == 'y')
+            CorStiffProduct = EquivalentStiffness * _centreZCor;
 
-        else if (_orientation == 'z')
-            _corStiffProduct = _equivalentStiffness * _centreYCor;
+        else if (Orientation == 'z')
+            CorStiffProduct = EquivalentStiffness * _centreYCor;
 
         else
             throw new Exception("Invalid direction of the wall");
 
         // Torsional Moment of Inertia
-        _torsionalMoment = 0.323 * _length * thickness * thickness * thickness;
+        TorsionalMoment = 0.323 * Length * tWall * tWall * tWall;
     }
 
     // Following methods are used to call each parameters of a wall separately
-    public double EquivalentStiffness()
-    {
-        return _equivalentStiffness;
-    }
-
-    public char Orientation()
-    {
-        return _orientation;
-    }
-
-    public double CorStiffProduct()
-    {
-        return _corStiffProduct;
-    }
+    public double EquivalentStiffness { get; private set; }
+    public char Orientation { get; private set; }
+    public double CorStiffProduct { get; private set; }
+    public double Length { get; private set; }
+    public double TorsionalMoment { get; private set; }
+    public double InertiaMoment { get; private set; }
+    public double ShearArea { get; private set; }
 
     public double[] CentreCoordinates()
     {
@@ -118,23 +117,5 @@ class Wall
         return shearCentreCoordinates;
     }
 
-    public double Length()
-    {
-        return _length;
-    }
-
-    public double TorsionalMoment()
-    {
-        return _torsionalMoment;
-    }
-
-    public double InertiaMoment()
-    {
-        return _momentOfInertia;
-    }
-
-    public double ShearArea()
-    {
-        return _shearArea;
-    }
+    
 }

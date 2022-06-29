@@ -3,28 +3,26 @@
 class Grid
 {
     // Characteristic parameters of the grid and main (horizontal and vertical) axes of the building.
-    private readonly double _numberVerticalAxes;
-    private readonly double _numberHorizontalAxes;
-    private double _spacingXdirection;
-    private double _spacingYdirection;
+    private readonly int _numberVerticalAxes;
+    private readonly int _numberHorizontalAxes;
 
-    public Grid(double numVerAxes, double numHorAxes)
+    public Grid(int numVerAxes, int numHorAxes)
     {
         _numberVerticalAxes = numVerAxes;
         _numberHorizontalAxes = numHorAxes;
     }
 
     // Creating a list of axes intersection points related to the defined grid.
-    public List<Point> SetGrid(double length, double width)
+    public List<Point> SetGrid(int length, int width)
     {
-        _spacingXdirection = length / (_numberVerticalAxes - 1);
-        _spacingYdirection = width / (_numberHorizontalAxes - 1);
+         var spacingXdirection = length / (_numberVerticalAxes - 1);
+         var spacingYdirection = width / (_numberHorizontalAxes - 1);
 
         List<Point> points = new List<Point>();
 
-        for (double i = 0; i <= width; i += _spacingYdirection)
+        for (int i = 0; i <= width; i += spacingYdirection)
         {
-            for (double j = 0; j <= length; j += _spacingXdirection)
+            for (int j = 0; j <= length; j += spacingXdirection)
             {
                 var point = new Point(j, i);
                 points.Add(point);
@@ -33,4 +31,19 @@ class Grid
         return points;
     }
 
+    public List<Point> GridOfAxes()
+    {
+
+        List<Point> points = new List<Point>();
+
+        for (int i = 1; i <= _numberHorizontalAxes; i ++)
+        {
+            for (int j = 1; j <= _numberVerticalAxes; j ++)
+            {
+                var point = new Point(j, i);
+                points.Add(point);
+            }
+        }
+        return points;
+    }
 }

@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "7ygjGlygscWyDMv/NKE5O4OH74Bx9m1XoPYXlXo8hKz08SBpMp2gZcJyGeT2C8BLyLZp3iyg31gzDip/EVl7uA==",
+  "dgSpecHash": "vxCTk5pMn/oEAHIzz+m2JnSn8JJWEQM6UQBP8S8gOgio1Zc8zovyL4mM1BsqD8ldC7ZRqE+hre6TCEYidFTsag==",
   "success": true,
   "projectFilePath": "C:\\Master_Thesis\\Master_Thesis.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Filip\\.nuget\\packages\\log4net\\2.0.14\\log4net.2.0.14.nupkg.sha512",
+    "C:\\Users\\Filip\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\Filip\\.nuget\\packages\\system.configuration.configurationmanager\\4.5.0\\system.configuration.configurationmanager.4.5.0.nupkg.sha512",
+    "C:\\Users\\Filip\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "C:\\Users\\Filip\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.5.0\\system.security.cryptography.protecteddata.4.5.0.nupkg.sha512",
+    "C:\\Users\\Filip\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
+    "C:\\Users\\Filip\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

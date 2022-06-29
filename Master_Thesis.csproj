@@ -11,4 +11,14 @@
     <Compile Include="C:\Master_Thesis\Program.cs" Link="Program.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="JMetalCSharp">
+      <HintPath>..\JMetal\JMetalCSharp\bin\Debug\JMetalCSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
