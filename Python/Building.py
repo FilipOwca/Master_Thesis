@@ -4,12 +4,6 @@ from Wall import Wall
 class Building:
 
     # Physical parameters of the bracing system (walls' layout)
-    _sumeEqlStiffinY = 0
-    _sumeEqlStiffinZ = 0
-    _sumeCorStiffProdinY = 0
-    _sumeCorStiffProdinZ = 0
-    _shearCentreCoordinateY = None
-    _shearCentreCoordinateZ = None
 
     # Finding the Shear Center of the bracing system related to the given walls
     def ShearCentre(self, walls: [Wall]):
@@ -18,12 +12,12 @@ class Building:
         # Splitting the walls into groups according to their orientation
         self.SplittingWalls(walls,wallsY,wallsZ)
         # Summing up EquivalentStiffness and CorStiffProduct of each wall in 2 directions separately
-        self.SummingUpStiffness(wallsY, wallsZ)
+        stiffnesses = self.SummingUpStiffness(wallsY, wallsZ)
 
         # Finding coordinates of the bracing system's shear center
         shearCentreCoordinates = []
-        shearCentreCoordinates.append(self._sumeCorStiffProdinZ / self._sumeEqlStiffinZ)
-        shearCentreCoordinates.append(self._sumeCorStiffProdinY / self._sumeEqlStiffinY)
+        shearCentreCoordinates.append(stiffnesses[3] / stiffnesses[2])
+        shearCentreCoordinates.append(stiffnesses[1] / stiffnesses[0])
         self._shearCentreCoordinateY = shearCentreCoordinates[0]
         self._shearCentreCoordinateZ = shearCentreCoordinates[1]
 
@@ -39,17 +33,25 @@ class Building:
                 wallsZ.append(wall.corStiffProduct)
 
     def SummingUpStiffness(self, wallsY, wallsZ):
+
+        _sumeEqlStiffinY = 0
+        _sumeEqlStiffinZ = 0
+        _sumeCorStiffProdinY = 0
+        _sumeCorStiffProdinZ = 0
+
         for i in range(0, len(wallsY)):
             if i % 2 == 0:
-                self._sumeEqlStiffinY += wallsY[i]
+                _sumeEqlStiffinY += wallsY[i]
             else:
-                self._sumeCorStiffProdinY += wallsY[i]
+                _sumeCorStiffProdinY += wallsY[i]
 
         for i in range(0, len(wallsZ)):
             if i % 2 == 0:
-                self._sumeEqlStiffinZ += wallsZ[i]
+                _sumeEqlStiffinZ += wallsZ[i]
             else:
-                self._sumeCorStiffProdinZ += wallsZ[i]
+                _sumeCorStiffProdinZ += wallsZ[i]
+
+        return [_sumeEqlStiffinY, _sumeCorStiffProdinY, _sumeEqlStiffinZ, _sumeCorStiffProdinZ]
 
     # Finding the warping area moment of the bracing system
     def WarpingAreaMoment(self, walls):

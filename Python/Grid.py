@@ -8,8 +8,8 @@ class Grid:
 
     # Creating a list of axes intersection points related to the defined grid.
     def SetGrid(self, length, width):
-        spacing_x_direction = length // (self.num_ver_axes -1)
-        spacing_y_direction = width // (self.num_hor_axes -1)
+        spacing_x_direction = length / (self.num_ver_axes -1)
+        spacing_y_direction = width / (self.num_hor_axes -1)
         points = []
         i = 0
         j = 0

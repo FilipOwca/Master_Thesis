@@ -5,17 +5,16 @@ class Wall:
 
     shearCorrectionFactor = 0.8333333333
     E = 33000000000
-    thickness = 0.3
-    heightOfBuilding = 12
+    heightOfBuilding = 60
 
     # Creating an instance of the class Wall and calculating its geometrical and physical properties
-    def __init__(self, A: Point, B: Point):
+    def __init__(self, A: Point, B: Point, tWall):
 
         self.startYCor = A.DisplayCoordinates()[0]
         self.startZCor = A.DisplayCoordinates()[1]
         self.endYCor = B.DisplayCoordinates()[0]
         self.endZCor = B.DisplayCoordinates()[1]
-        self.CalculateParameters(A,B)
+        self.CalculateParameters(A,B, tWall)
 
     # Calling coordinates of the wall's start and end
     def StartEndCord(self):
@@ -23,7 +22,10 @@ class Wall:
         return startEndCord
 
     # Main function calculating parameters
-    def CalculateParameters(self,A: Point, B: Point):
+    def CalculateParameters(self,A: Point, B: Point, tWall):
+
+        # Thickness of wall
+        self.thickness = tWall
 
         # Assigning parameters of a wall
         gModulus = self.E / (2 * (1 + 0.2))
@@ -59,9 +61,15 @@ class Wall:
 
         # Shear Area
         if self.orientation == 'y':
-             self.shearArea = (self.endYCor - self.startYCor) * self.thickness * self.shearCorrectionFactor
+            # print("new wall")
+            # print("endYCor =", self.endYCor)
+            # print("startYCor =", self.startYCor)
+            self.shearArea = (self.endYCor - self.startYCor) * self.thickness * self.shearCorrectionFactor
         elif self.orientation == 'z':
-             self.shearArea = (self.endZCor - self.startZCor) * self.thickness * self.shearCorrectionFactor
+            # print("new wall")
+            # print("endZCor =", self.endZCor)
+            # print("startZCor =", self.startZCor)
+            self.shearArea = (self.endZCor - self.startZCor) * self.thickness * self.shearCorrectionFactor
 
         # Shear Stiffness
         self.shearStiffness = (gModulus * self.shearArea) / self.heightOfBuilding
