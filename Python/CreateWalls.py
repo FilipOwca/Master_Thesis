@@ -3,7 +3,7 @@ import numpy as np
 
 class CreateWalls:
 
-    def ConstructWalls(self, num_ver_axes, num_hor_axes, points, solution):
+    def ConstructWalls(self, num_ver_axes, num_hor_axes, points, solution, min_thick):
 
         maxNumberOfWalls = (num_hor_axes - 1) * num_ver_axes + (num_ver_axes - 1) * num_hor_axes
         num_wall_hor_axis = num_ver_axes - 1
@@ -16,12 +16,12 @@ class CreateWalls:
         wallsz = []
         walls = []
         for i in range(num_hor_axes * num_wall_hor_axis):
-            if solution[i] >= 0.15:
+            if solution[i] >= min_thick:
                 wallsy.append(solution[i])
             else:
                 wallsy.append(0)
         for i in range(num_hor_axes * num_wall_hor_axis, maxNumberOfWalls):
-            if solution[i] >= 0.15:
+            if solution[i] >= min_thick:
                 wallsz.append(solution[i])
             else:
                 wallsz.append(0)
@@ -71,6 +71,7 @@ class CreateWalls:
                     wall = Wall(points[i + (j -count) * num_ver_axes], points[i + j * num_ver_axes], avg_thick)
                     walls.append(wall)
                     count = 0
+                    thick_sum = 0
         return walls
 
     def AverageThickness(self, thick_sum, count):

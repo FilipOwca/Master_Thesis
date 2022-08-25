@@ -14,7 +14,7 @@ class Wall:
         self.startZCor = A.DisplayCoordinates()[1]
         self.endYCor = B.DisplayCoordinates()[0]
         self.endZCor = B.DisplayCoordinates()[1]
-        self.CalculateParameters(A,B, tWall)
+        self.CalculateParameters(tWall)
 
     # Calling coordinates of the wall's start and end
     def StartEndCord(self):
@@ -22,7 +22,7 @@ class Wall:
         return startEndCord
 
     # Main function calculating parameters
-    def CalculateParameters(self,A: Point, B: Point, tWall):
+    def CalculateParameters(self, tWall):
 
         # Thickness of wall
         self.thickness = tWall
@@ -61,14 +61,8 @@ class Wall:
 
         # Shear Area
         if self.orientation == 'y':
-            # print("new wall")
-            # print("endYCor =", self.endYCor)
-            # print("startYCor =", self.startYCor)
             self.shearArea = (self.endYCor - self.startYCor) * self.thickness * self.shearCorrectionFactor
         elif self.orientation == 'z':
-            # print("new wall")
-            # print("endZCor =", self.endZCor)
-            # print("startZCor =", self.startZCor)
             self.shearArea = (self.endZCor - self.startZCor) * self.thickness * self.shearCorrectionFactor
 
         # Shear Stiffness

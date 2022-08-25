@@ -4,7 +4,7 @@ from CreateWalls import CreateWalls
 class Visualisation:
 
 
-    def ToTable(self, num_hor_axes, num_ver_axes, listOfPoints, testResult):
+    def ToTable(self, num_hor_axes, num_ver_axes, listOfPoints, testResult, min_thick):
         # testResult = np.rint(testResult)
 
 
@@ -30,18 +30,18 @@ class Visualisation:
         testResult = np.around(testResult, decimals=2)
 
         wallCreator = CreateWalls()
-        walls = wallCreator.ConstructWalls(num_ver_axes, num_hor_axes, listOfPoints, testResult)
+        walls = wallCreator.ConstructWalls(num_ver_axes, num_hor_axes, listOfPoints, testResult, min_thick)
 
         wallsy = []
         wallsz = []
 
         for i in range(num_hor_axes * num_wall_hor_axis):
-            if testResult[i] >= 0.15:
+            if testResult[i] >= min_thick:
                 wallsy.append(testResult[i])
             else:
                 wallsy.append(0)
         for i in range(num_hor_axes * num_wall_hor_axis, maxNumberOfWalls):
-            if testResult[i] >= 0.15:
+            if testResult[i] >= min_thick:
                 wallsz.append(testResult[i])
             else:
                 wallsz.append(0)

@@ -31,6 +31,7 @@ num_ver_axes = 5
 num_hor_axes = 4
 num_wall_hor_axis = num_ver_axes - 1
 num_wall_ver_axis = num_hor_axes - 1
+min_thick = 0.15
 
 # Diagonal of the building's plan
 d = math.sqrt(width * width + length * length)
@@ -133,7 +134,7 @@ class QuantityOfConcrete(ElementwiseProblem):
         if np.all(nrWalls):
 
             wallCreator = CreateWalls()
-            walls = wallCreator.ConstructWalls(num_ver_axes, num_hor_axes, listOfPoints, solution)
+            walls = wallCreator.ConstructWalls(num_ver_axes, num_hor_axes, listOfPoints, solution, min_thick)
             Load = Load(width, length, tFloor, gLoad, qLoad, walls, hFloor, columnCs, columnNr, floorNr)
             verticalLoad = Load.GetVerticalLoad()
 
@@ -194,14 +195,14 @@ f = open("data.txt", "w")
 
 visualisation = Visualisation()
 for i in range(np.array(results.X).shape[0]):
-    vis = visualisation.ToTable(num_hor_axes, num_ver_axes, listOfPoints, results.X[i])
+    vis = visualisation.ToTable(num_hor_axes, num_ver_axes, listOfPoints, results.X[i], min_thick)
     f.write(str(vis))
     f.write("\n")
     f.write("\n")
 f.close()
 
 wallCreator = CreateWalls()
-walls = wallCreator.ConstructWalls(num_ver_axes, num_hor_axes, listOfPoints, (results.X[0]))
+walls = wallCreator.ConstructWalls(num_ver_axes, num_hor_axes, listOfPoints, (results.X[0]), min_thick)
 
 for wall in walls:
     print("Wall coordinates: START({},{}) END({},{}) THICKNESS: {}".format(wall.StartEndCord()[0], wall.StartEndCord()[1], wall.StartEndCord()[2], wall.StartEndCord()[3], round(wall.thickness, 2)))
@@ -210,12 +211,12 @@ wallsy = []
 wallsz = []
 
 for i in range(num_hor_axes * num_wall_hor_axis):
-    if results.X[0][i] >= 0.15:
+    if results.X[0][i] >= min_thick:
         wallsy.append(rounded_X[i])
     else:
         wallsy.append(0)
 for i in range(num_hor_axes * num_wall_hor_axis, maxNumberOfWalls):
-    if results.X[0][i] >= 0.15:
+    if results.X[0][i] >= min_thick:
         wallsz.append(rounded_X[i])
     else:
         wallsz.append(0)
